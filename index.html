@@ -1,137 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fecha de aniversario 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fecha de aniversario</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  body {
+    background: linear-gradient(135deg, #f9c5d1, #fddde6);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
 
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(180deg, #ffb3c6, #ffe3ec);
-    }
+  .card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    animation: fadeIn 1.5s ease;
+  }
 
-    .card {
-      background: white;
-      width: 300px;
-      padding: 25px 20px;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
+  h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
 
-    h2 {
-      color: #ff4d6d;
-      margin-bottom: 10px;
-    }
+  .lock {
+    position: relative;
+    font-size: 70px;
+    margin: 10px 0 20px;
+  }
 
-    .lock {
-      font-size: 60px;
-      margin: 15px 0;
-      transition: transform 0.3s;
-    }
+  .lock input {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+    width: 120px;
+    padding: 6px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    letter-spacing: 4px;
+  }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 18px;
-      text-align: center;
-      letter-spacing: 4px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      margin-bottom: 15px;
-    }
+  button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    background: #ff6f91;
+    color: white;
+    cursor: pointer;
+  }
 
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #ff4d6d;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+  .gif {
+    display: none;
+    margin-top: 20px;
+    animation: fadeIn 1.5s ease;
+  }
 
-    #message {
-      display: none;
-      margin-top: 15px;
-      font-size: 16px;
-      color: #ff4d6d;
-      animation: fadeIn 1.2s ease;
-    }
+  .gif img {
+    width: 200px;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .shake {
-      animation: shake 0.3s;
-    }
-
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
-    }
-  </style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h2>Fecha de aniversario 💕</h2>
+<div class="card">
+  <h1>Fecha de aniversario</h1>
 
-    <div id="lockIcon" class="lock">🔒</div>
-
+  <div class="lock" id="lock">
+    🔒
     <input
-      type="text"
-      id="codeInput"
+      type="password"
+      id="code"
       maxlength="6"
       placeholder="DDMMYY"
       inputmode="numeric"
     >
-
-    <button onclick="unlock()">Desbloquear</button>
-
-    <div id="message">
-      🔓 <br>
-      20 de septiembre, el día que empezó todo 💖
-    </div>
   </div>
 
-  <script>
-    // 🔑 CLAVE CORRECTA (20/09/24)
-    const correctCode = "200924";
+  <button onclick="checkCode()">Desbloquear</button>
 
-    function unlock() {
-      const input = document.getElementById("codeInput");
-      const lock = document.getElementById("lockIcon");
-      const message = document.getElementById("message");
+  <div class="gif" id="gif">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZGNiNTFkaTVibjdmc3k0NnZtazdmcDNyeDBxd2RmemJ6cDF2ZzY3NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sdK7zJb4BKiyoR9k8L/giphy.gif">
+  </div>
+</div>
 
-      if (input.value === correctCode) {
-        lock.innerText = "🔓";
-        message.style.display = "block";
-      } else {
-        lock.classList.add("shake");
-        setTimeout(() => lock.classList.remove("shake"), 300);
-        alert("Esa no es la fecha correcta 💔");
-      }
+<script>
+  function checkCode() {
+    const code = document.getElementById("code").value;
+    const lock = document.getElementById("lock");
+    const gif = document.getElementById("gif");
+
+    if (code === "200924") {
+      lock.innerHTML = "🔓";
+      gif.style.display = "block";
+    } else {
+      alert("Esa no es la fecha correcta 💔");
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
-
