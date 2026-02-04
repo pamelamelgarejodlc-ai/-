@@ -61,10 +61,6 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #ff335a;
-    }
-
     #message {
       display: none;
       margin-top: 15px;
@@ -73,7 +69,6 @@
       animation: fadeIn 1.2s ease;
     }
 
-    /* COLLAGE OCULTO AL INICIO */
     .collage {
       display: none;
       margin-top: 15px;
@@ -87,6 +82,18 @@
       height: 90px;
       object-fit: cover;
       border-radius: 10px;
+    }
+
+    .video-box {
+      display: none;
+      margin-top: 15px;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .video-box video {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 10px;
     }
 
     @keyframes fadeIn {
@@ -132,35 +139,5 @@
 
     <!-- COLLAGE -->
     <div id="collage" class="collage">
-      <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
-      <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
-      <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
-      <img src="IMG_20251214_194741.jpg">
-      <img src="IMG_20260117_185048.jpg">
-      <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
-    </div>
-  </div>
-
-  <script>
-    const correctCode = "200924";
-
-    function unlock() {
-      const input = document.getElementById("codeInput");
-      const lock = document.getElementById("lockIcon");
-      const message = document.getElementById("message");
-      const collage = document.getElementById("collage");
-
-      if (input.value === correctCode) {
-        lock.textContent = "🔓";
-        message.style.display = "block";
-        collage.style.display = "grid"; // 👈 SOLO AQUÍ APARECE
-      } else {
-        lock.classList.add("shake");
-        setTimeout(() => lock.classList.remove("shake"), 300);
-        alert("Esa no es la fecha correcta 💔");
-      }
-    }
-  </script>
-
-</body>
-</html>
+      <img src="0665c6e22fc721a6a00a7aa94a260
+        
