@@ -67,6 +67,7 @@
       width: 100%;
       border-radius: 15px;
       margin-bottom: 10px;
+      display: none; /* ocultamos todos al inicio */
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -108,10 +109,10 @@
 
     <!-- VIDEOS -->
     <div id="videoBox" class="video-box">
-      <video controls>
+      <video id="video1" controls>
         <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
       </video>
-      <video controls>
+      <video id="video2" controls>
         <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
       </video>
     </div>
@@ -132,11 +133,39 @@
         message.style.display = "block";
         collage.style.display = "grid";
         videoBox.style.display = "block";
+
+        // Mostrar y reproducir el primer video
+        const video1 = document.getElementById('video1');
+        const video2 = document.getElementById('video2');
+        video1.style.display = 'block';
+        video2.style.display = 'none';
+        video1.play();
       } else {
         lockIcon.classList.add('shake');
         setTimeout(() => lockIcon.classList.remove('shake'), 300);
       }
     }
+
+    // Función para pantalla completa
+    function fullscreen(video) {
+      if(video.requestFullscreen) video.requestFullscreen();
+      else if(video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+      else if(video.msRequestFullscreen) video.msRequestFullscreen();
+    }
+
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+
+    // Video 1
+    video1.addEventListener('play', () => fullscreen(video1));
+    video1.addEventListener('ended', () => {
+      video1.style.display = 'none';
+      video2.style.display = 'block';
+      video2.play();
+    });
+
+    // Video 2
+    video2.addEventListener('play', () => fullscreen(video2));
   </script>
 
 </body>
