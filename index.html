@@ -1,169 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fecha de aniversario 💖</title>
-
-  <style>
-    * { box-sizing: border-box; font-family: Arial, sans-serif; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(180deg, #ffb3c6, #ffe3ec);
-    }
-    .card {
-      background: white;
-      width: 330px;
-      padding: 25px 20px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
-    h2 { color: #ff4d6d; margin-bottom: 10px; }
-    .lock { font-size: 60px; margin: 15px 0; }
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 20px;
-      text-align: center;
-      letter-spacing: 6px;
-      border-radius: 14px;
-      border: 1px solid #ccc;
-      margin-bottom: 15px;
-    }
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #ff4d6d;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #message, .collage, .video-box {
-      display: none;
-      margin-top: 15px;
-      animation: fadeIn 1.2s ease;
-    }
-    #message { font-size: 16px; color: #ff4d6d; }
-    .collage {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-    }
-    .collage img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-    }
-    .video-box video {
-      width: 100%;
-      border-radius: 15px;
-      margin-bottom: 10px;
-      display: none;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .shake { animation: shake 0.3s; }
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fecha de aniversario 💖</title>
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #ffb3c6, #ffe3ec);
+}
+.card {
+  background: white;
+  width: 330px;
+  padding: 25px 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+h2 { color: #ff4d6d; margin-bottom: 10px; }
+.lock { font-size: 60px; margin: 15px 0; }
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 6px;
+  border-radius: 14px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#message, #finalMessage, .collage, .video-box {
+  display: none;
+  margin-top: 15px;
+}
+#message, #finalMessage { font-size: 16px; color: #ff4d6d; animation: fadeIn 1s ease forwards; }
+.collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.collage img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  opacity: 0;
+}
+.video-box video {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  display: none;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.shake { animation: shake 0.3s; }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+</style>
 </head>
-
 <body>
+<div class="card">
+  <h2>Fecha de aniversario 💕</h2>
+  <div id="lockIcon" class="lock">🔒</div>
+  <input type="text" id="codeInput" maxlength="6" placeholder="DDMMYY" inputmode="numeric">
+  <button onclick="unlock()">Desbloquear</button>
 
-  <div class="card">
-    <h2>Fecha de aniversario 💕</h2>
-    <div id="lockIcon" class="lock">🔒</div>
-    <input type="text" id="codeInput" maxlength="6" placeholder="DDMMYY" inputmode="numeric">
-    <button onclick="unlock()">Desbloquear</button>
-
-    <div id="message">
-      🔓<br>
-      20 de septiembre, el día que empezó todo 💖
-    </div>
-
-    <!-- COLLAGE -->
-    <div id="collage" class="collage">
-      <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg" alt="Foto 1">
-      <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg" alt="Foto 2">
-      <img src="830fe84f0695c187266e425bfecc200d_0.jpeg" alt="Foto 3">
-      <img src="IMG_20251214_194741.jpg" alt="Foto 4">
-      <img src="IMG_20260117_185048.jpg" alt="Foto 5">
-      <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg" alt="Foto 6">
-    </div>
-
-    <!-- VIDEOS -->
-    <div id="videoBox" class="video-box">
-      <video id="video1" controls>
-        <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
-      </video>
-      <video id="video2" controls>
-        <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
-      </video>
-    </div>
+  <div id="message">
+    🔓<br>
+    20 de septiembre, el día que empezó todo 💖
   </div>
 
-  <script>
-    const video1 = document.getElementById('video1');
-    const video2 = document.getElementById('video2');
+  <!-- COLLAGE -->
+  <div id="collage" class="collage">
+    <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg" alt="Foto 1">
+    <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg" alt="Foto 2">
+    <img src="830fe84f0695c187266e425bfecc200d_0.jpeg" alt="Foto 3">
+    <img src="IMG_20251214_194741.jpg" alt="Foto 4">
+    <img src="IMG_20260117_185048.jpg" alt="Foto 5">
+    <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg" alt="Foto 6">
+  </div>
 
-    function unlock() {
-      const input = document.getElementById('codeInput').value.trim();
-      const lockIcon = document.getElementById('lockIcon');
-      const message = document.getElementById('message');
-      const collage = document.getElementById('collage');
-      const videoBox = document.getElementById('videoBox');
+  <!-- VIDEOS -->
+  <div id="videoBox" class="video-box">
+    <video id="video1" controls>
+      <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
+    </video>
+    <video id="video2" controls>
+      <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
+    </video>
+  </div>
 
-      const correctCode = "200924";
+  <div id="finalMessage">
+    🎉 ¡Feliz aniversario! Gracias por todo este tiempo juntos 💖
+  </div>
+</div>
 
-      if(input === correctCode) {
-        lockIcon.textContent = "🔓";
-        message.style.display = "block";
-        collage.style.display = "grid";
-        videoBox.style.display = "block";
+<script>
+const video1 = document.getElementById('video1');
+const video2 = document.getElementById('video2');
 
-        // Primer video
-        video1.style.display = 'block';
-        video2.style.display = 'none';
-        
-        // Reproducir y pantalla completa
-        video1.play().then(() => {
-          if(video1.requestFullscreen) video1.requestFullscreen();
-          else if(video1.webkitRequestFullscreen) video1.webkitRequestFullscreen();
-          else if(video1.msRequestFullscreen) video1.msRequestFullscreen();
-        });
-      } else {
-        lockIcon.classList.add('shake');
-        setTimeout(() => lockIcon.classList.remove('shake'), 300);
-      }
-    }
+function unlock() {
+  const input = document.getElementById('codeInput').value.trim();
+  const lockIcon = document.getElementById('lockIcon');
+  const message = document.getElementById('message');
+  const collage = document.getElementById('collage');
+  const videoBox = document.getElementById('videoBox');
 
-    // Cuando el primer video termine, mostrar y reproducir el segundo
-    video1.addEventListener('ended', () => {
-      video1.style.display = 'none';
-      video2.style.display = 'block';
-      video2.play().then(() => {
-        if(video2.requestFullscreen) video2.requestFullscreen();
-        else if(video2.webkitRequestFullscreen) video2.webkitRequestFullscreen();
-        else if(video2.msRequestFullscreen) video2.msRequestFullscreen();
-      });
+  if(input === "200924") {
+    lockIcon.textContent = "🔓";
+    message.style.display = "block";
+    collage.style.display = "grid";
+    videoBox.style.display = "block";
+
+    // Fotos fade-in uno por uno
+    const imgs = collage.querySelectorAll("img");
+    imgs.forEach((img, index) => {
+      setTimeout(() => { img.style.opacity = 1; img.style.animation = "fadeIn 1s forwards"; }, index * 300);
     });
-  </script>
 
+    // Video 1
+    video1.style.display = 'block';
+    video2.style.display = 'none';
+    video1.play().then(() => {
+      if(video1.requestFullscreen) video1.requestFullscreen();
+      else if(video1.webkitRequestFullscreen) video1.webkitRequestFullscreen();
+      else if(video1.msRequestFullscreen) video1.msRequestFullscreen();
+    });
+  } else {
+    lockIcon.classList.add('shake');
+    setTimeout(() => lockIcon.classList.remove('shake'), 300);
+  }
+}
+
+// Video 1 terminado → video 2
+video1.addEventListener('ended', () => {
+  video1.style.display = 'none';
+  video2.style.display = 'block';
+  video2.play().then(() => {
+    if(video2.requestFullscreen) video2.requestFullscreen();
+    else if(video2.webkitRequestFullscreen) video2.webkitRequestFullscreen();
+    else if(video2.msRequestFullscreen) video2.msRequestFullscreen();
+  });
+});
+
+// Video 2 terminado → mostrar mensaje final
+video2.addEventListener('ended', () => {
+  video2.style.display = 'none';
+  document.getElementById('finalMessage').style.display = 'block';
+});
+</script>
 </body>
 </html>
