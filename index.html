@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fecha de aniversario 💖</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, #ffb3c6, #ffe3ec);
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      padding: 25px 20px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    .lock {
+      font-size: 60px;
+      margin: 15px 0;
+      transition: transform 0.3s;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: 4px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #message {
+      display: none;
+      margin-top: 15px;
+      font-size: 16px;
+      color: #ff4d6d;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .shake {
+      animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Fecha de aniversario 💕</h2>
+
+    <div id="lockIcon" class="lock">🔒</div>
+
+    <input
+      type="text"
+      id="codeInput"
+      maxlength="6"
+      placeholder="DDMMYY"
+      inputmode="numeric"
+    >
+
+    <button onclick="unlock()">Desbloquear</button>
+
+    <div id="message">
+      🔓 <br>
+      20 de septiembre, el día que empezó todo 💖
+    </div>
+  </div>
+
+  <script>
+    // 🔑 CLAVE CORRECTA (20/09/24)
+    const correctCode = "200924";
+
+    function unlock() {
+      const input = document.getElementById("codeInput");
+      const lock = document.getElementById("lockIcon");
+      const message = document.getElementById("message");
+
+      if (input.value === correctCode) {
+        lock.innerText = "🔓";
+        message.style.display = "block";
+      } else {
+        lock.classList.add("shake");
+        setTimeout(() => lock.classList.remove("shake"), 300);
+        alert("Esa no es la fecha correcta 💔");
+      }
+    }
+  </script>
+
+</body>
+</html>
+
