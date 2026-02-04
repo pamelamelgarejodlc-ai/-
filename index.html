@@ -7,7 +7,7 @@
 
 <style>
   body {
-    background: linear-gradient(135deg, #f9c5d1, #fddde6);
+    background: #f6c1cc;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -16,85 +16,72 @@
     margin: 0;
   }
 
-  .card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
+  .container {
     text-align: center;
-    width: 300px;
-    animation: fadeIn 1.5s ease;
+    animation: fadeIn 1.2s ease;
   }
 
   h1 {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #fff;
   }
 
   .lock {
-    position: relative;
-    font-size: 70px;
-    margin: 10px 0 20px;
-  }
-
-  .lock input {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -35%);
-    width: 120px;
-    padding: 6px;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    letter-spacing: 4px;
-  }
-
-  button {
-    margin-top: 15px;
-    padding: 10px 25px;
-    font-size: 16px;
-    border: none;
-    border-radius: 15px;
-    background: #ff6f91;
-    color: white;
+    font-size: 110px;
     cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .lock.shake {
+    animation: shake 0.4s;
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .gif {
     display: none;
-    margin-top: 20px;
+    margin-top: 25px;
     animation: fadeIn 1.5s ease;
   }
 
   .gif img {
-    width: 200px;
+    width: 220px;
   }
 
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-6px); }
+    100% { transform: translateX(0); }
+  }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
   <h1>Fecha de aniversario</h1>
 
-  <div class="lock" id="lock">
-    🔒
-    <input
-      type="password"
-      id="code"
-      maxlength="6"
-      placeholder="DDMMYY"
-      inputmode="numeric"
-    >
-  </div>
+  <div class="lock" id="lock" onclick="focusInput()">🔒</div>
 
-  <button onclick="checkCode()">Desbloquear</button>
+  <input
+    type="password"
+    id="code"
+    maxlength="6"
+    inputmode="numeric"
+    oninput="checkCode()"
+  >
 
   <div class="gif" id="gif">
     <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyZGNiNTFkaTVibjdmc3k0NnZtazdmcDNyeDBxd2RmemJ6cDF2ZzY3NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/sdK7zJb4BKiyoR9k8L/giphy.gif">
@@ -102,16 +89,24 @@
 </div>
 
 <script>
-  function checkCode() {
-    const code = document.getElementById("code").value;
-    const lock = document.getElementById("lock");
-    const gif = document.getElementById("gif");
+  const input = document.getElementById("code");
+  const lock = document.getElementById("lock");
+  const gif = document.getElementById("gif");
 
-    if (code === "200924") {
-      lock.innerHTML = "🔓";
-      gif.style.display = "block";
-    } else {
-      alert("Esa no es la fecha correcta 💔");
+  function focusInput() {
+    input.focus();
+  }
+
+  function checkCode() {
+    if (input.value.length === 6) {
+      if (input.value === "200924") {
+        lock.textContent = "🔓";
+        gif.style.display = "block";
+      } else {
+        lock.classList.add("shake");
+        input.value = "";
+        setTimeout(() => lock.classList.remove("shake"), 400);
+      }
     }
   }
 </script>
