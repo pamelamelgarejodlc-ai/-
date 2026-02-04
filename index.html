@@ -67,7 +67,7 @@
       width: 100%;
       border-radius: 15px;
       margin-bottom: 10px;
-      display: none; /* ocultamos todos al inicio */
+      display: none;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
@@ -119,6 +119,9 @@
   </div>
 
   <script>
+    const video1 = document.getElementById('video1');
+    const video2 = document.getElementById('video2');
+
     function unlock() {
       const input = document.getElementById('codeInput').value.trim();
       const lockIcon = document.getElementById('lockIcon');
@@ -126,7 +129,7 @@
       const collage = document.getElementById('collage');
       const videoBox = document.getElementById('videoBox');
 
-      const correctCode = "200924"; // solo dígitos DDMMYY
+      const correctCode = "200924";
 
       if(input === correctCode) {
         lockIcon.textContent = "🔓";
@@ -134,38 +137,32 @@
         collage.style.display = "grid";
         videoBox.style.display = "block";
 
-        // Mostrar y reproducir el primer video
-        const video1 = document.getElementById('video1');
-        const video2 = document.getElementById('video2');
+        // Primer video
         video1.style.display = 'block';
         video2.style.display = 'none';
-        video1.play();
+        
+        // Reproducir y pantalla completa
+        video1.play().then(() => {
+          if(video1.requestFullscreen) video1.requestFullscreen();
+          else if(video1.webkitRequestFullscreen) video1.webkitRequestFullscreen();
+          else if(video1.msRequestFullscreen) video1.msRequestFullscreen();
+        });
       } else {
         lockIcon.classList.add('shake');
         setTimeout(() => lockIcon.classList.remove('shake'), 300);
       }
     }
 
-    // Función para pantalla completa
-    function fullscreen(video) {
-      if(video.requestFullscreen) video.requestFullscreen();
-      else if(video.webkitRequestFullscreen) video.webkitRequestFullscreen();
-      else if(video.msRequestFullscreen) video.msRequestFullscreen();
-    }
-
-    const video1 = document.getElementById('video1');
-    const video2 = document.getElementById('video2');
-
-    // Video 1
-    video1.addEventListener('play', () => fullscreen(video1));
+    // Cuando el primer video termine, mostrar y reproducir el segundo
     video1.addEventListener('ended', () => {
       video1.style.display = 'none';
       video2.style.display = 'block';
-      video2.play();
+      video2.play().then(() => {
+        if(video2.requestFullscreen) video2.requestFullscreen();
+        else if(video2.webkitRequestFullscreen) video2.webkitRequestFullscreen();
+        else if(video2.msRequestFullscreen) video2.msRequestFullscreen();
+      });
     });
-
-    // Video 2
-    video2.addEventListener('play', () => fullscreen(video2));
   </script>
 
 </body>
