@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz San Valentín💖</title>
+<title>Fecha de aniversario 💖</title>
 
 <style>
 * { box-sizing: border-box; font-family: Arial, sans-serif; }
@@ -26,7 +26,7 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-h2 { color: #ff4d6d; margin-bottom: 10px; }
+h2 { color: #ff4d6d; }
 
 .lock { font-size: 60px; margin: 15px 0; }
 
@@ -49,20 +49,18 @@ button {
   border: none;
   border-radius: 25px;
   font-size: 16px;
-  cursor: pointer;
 }
 
 #message {
   display: none;
-  margin-top: 15px;
-  font-size: 16px;
+  margin-top: 10px;
   color: #ff4d6d;
 }
 
+/* COLLAGE */
 .collage {
   display: none;
   margin-top: 15px;
-  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
@@ -97,12 +95,12 @@ button {
 <body>
 
 <div class="card">
-  <h2>Feliz San Valentín💕</h2>
+  <h2>Fecha de aniversario 💕</h2>
   <div id="lockIcon" class="lock">🔒</div>
 
   <input
-    type="text"
     id="codeInput"
+    type="text"
     maxlength="6"
     placeholder="DDMMYY"
     inputmode="numeric"
@@ -111,11 +109,10 @@ button {
   <button onclick="unlock()">Desbloquear</button>
 
   <div id="message">
-    🔓<br>
-    20 de septiembre, el día que empezó todo 💖
+    🔓 20 de septiembre, el día que empezó todo 💖
   </div>
 
-  <!-- FOTOS (IGUAL QUE ANTES) -->
+  <!-- IMÁGENES -->
   <div id="collage" class="collage">
     <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
     <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
@@ -135,5 +132,59 @@ button {
       <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
     </video>
 
-    <button id="nextVideoBtn">Ver siguien
-      
+    <button id="nextVideoBtn">Ver siguiente video 💕</button>
+  </div>
+</div>
+
+<script>
+const video1 = document.getElementById("video1");
+const video2 = document.getElementById("video2");
+const nextBtn = document.getElementById("nextVideoBtn");
+
+function unlock() {
+  const code = document.getElementById("codeInput").value.trim();
+  console.log("Código ingresado:", code);
+
+  if (code === "200924") {
+    document.getElementById("lockIcon").textContent = "🔓";
+    document.getElementById("message").style.display = "block";
+
+    const collage = document.getElementById("collage");
+    collage.style.display = "grid";
+
+    const videoBox = document.getElementById("videoBox");
+    videoBox.style.display = "block";
+
+    video1.style.display = "block";
+    video1.play();
+
+    if (video1.requestFullscreen) {
+      video1.requestFullscreen();
+    } else if (video1.webkitRequestFullscreen) {
+      video1.webkitRequestFullscreen();
+    }
+  } else {
+    alert("Fecha incorrecta 💔");
+  }
+}
+
+video1.addEventListener("ended", () => {
+  nextBtn.style.display = "block";
+});
+
+nextBtn.addEventListener("click", () => {
+  nextBtn.style.display = "none";
+  video1.style.display = "none";
+  video2.style.display = "block";
+  video2.play();
+
+  if (video2.requestFullscreen) {
+    video2.requestFullscreen();
+  } else if (video2.webkitRequestFullscreen) {
+    video2.webkitRequestFullscreen();
+  }
+});
+</script>
+
+</body>
+</html>
