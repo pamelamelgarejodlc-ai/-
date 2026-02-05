@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fecha de aniversario 💖</title>
+<title>Feliz San Valentín 💖</title>
 
 <style>
-* { box-sizing: border-box; font-family: Arial, sans-serif; }
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
 body {
   margin: 0;
@@ -26,9 +29,15 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-h2 { color: #ff4d6d; margin-bottom: 10px; }
+h2 {
+  color: #ff4d6d;
+  margin-bottom: 10px;
+}
 
-.lock { font-size: 60px; margin: 15px 0; }
+.lock {
+  font-size: 60px;
+  margin: 15px 0;
+}
 
 input {
   width: 100%;
@@ -76,12 +85,19 @@ button {
 /* VIDEOS */
 .video-box {
   display: none;
+  margin-top: 15px;
 }
 
 .video-box video {
   width: 100%;
   border-radius: 15px;
   display: none;
+}
+
+#nextVideoBtn {
+  display: none;
+  margin-top: 10px;
+  background: #ff85a2;
 }
 </style>
 </head>
@@ -92,7 +108,14 @@ button {
   <h2>Feliz San Valentín 💕</h2>
   <div id="lockIcon" class="lock">🔒</div>
 
-  <input id="codeInput" maxlength="6" placeholder="DDMMYY" inputmode="numeric">
+  <input
+    type="text"
+    id="codeInput"
+    maxlength="6"
+    placeholder="DDMMYY"
+    inputmode="numeric"
+  >
+
   <button onclick="unlock()">Desbloquear</button>
 
   <div id="message">
@@ -100,7 +123,7 @@ button {
     20 de septiembre, el día que empezó todo 💖
   </div>
 
-  <!-- FOTOS (NO TOCADAS) -->
+  <!-- FOTOS (NO CAMBIADAS) -->
   <div id="collage" class="collage">
     <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
     <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
@@ -112,19 +135,22 @@ button {
 
   <!-- VIDEOS -->
   <div id="videoBox" class="video-box">
-    <video id="video1" controls>
+    <video id="video1" controls playsinline>
       <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
     </video>
 
-    <video id="video2" controls>
+    <video id="video2" controls playsinline>
       <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
     </video>
+
+    <button id="nextVideoBtn">Ver siguiente video 💕</button>
   </div>
 </div>
 
 <script>
 const video1 = document.getElementById("video1");
 const video2 = document.getElementById("video2");
+const nextBtn = document.getElementById("nextVideoBtn");
 
 function unlock() {
   const code = document.getElementById("codeInput").value;
@@ -135,27 +161,8 @@ function unlock() {
     document.getElementById("collage").style.display = "grid";
     document.getElementById("videoBox").style.display = "block";
 
-    // arrancar primer video en fullscreen
     video1.style.display = "block";
     video1.play();
 
-    video1.onplay = () => {
-      if (video1.requestFullscreen) video1.requestFullscreen();
-      else if (video1.webkitRequestFullscreen) video1.webkitRequestFullscreen();
-    };
-  }
-}
-
-// al terminar video 1 → video 2 fullscreen
-video1.addEventListener("ended", () => {
-  video1.style.display = "none";
-  video2.style.display = "block";
-  video2.play();
-
-  if (video2.requestFullscreen) video2.requestFullscreen();
-  else if (video2.webkitRequestFullscreen) video2.webkitRequestFullscreen();
-});
-</script>
-
-</body>
-</html>
+    if (video1.reque
+        
