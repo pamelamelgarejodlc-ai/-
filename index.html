@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz San Valentín 💖</title>
+<title>Feliz San Valentín💖</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
 
 body {
   margin: 0;
@@ -29,15 +26,9 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-h2 {
-  color: #ff4d6d;
-  margin-bottom: 10px;
-}
+h2 { color: #ff4d6d; margin-bottom: 10px; }
 
-.lock {
-  font-size: 60px;
-  margin: 15px 0;
-}
+.lock { font-size: 60px; margin: 15px 0; }
 
 input {
   width: 100%;
@@ -71,6 +62,7 @@ button {
 .collage {
   display: none;
   margin-top: 15px;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
@@ -105,7 +97,7 @@ button {
 <body>
 
 <div class="card">
-  <h2>Feliz San Valentín 💕</h2>
+  <h2>Feliz San Valentín💕</h2>
   <div id="lockIcon" class="lock">🔒</div>
 
   <input
@@ -123,7 +115,7 @@ button {
     20 de septiembre, el día que empezó todo 💖
   </div>
 
-  <!-- FOTOS (NO CAMBIADAS) -->
+  <!-- FOTOS (IGUAL QUE ANTES) -->
   <div id="collage" class="collage">
     <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
     <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
@@ -143,26 +135,5 @@ button {
       <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
     </video>
 
-    <button id="nextVideoBtn">Ver siguiente video 💕</button>
-  </div>
-</div>
-
-<script>
-const video1 = document.getElementById("video1");
-const video2 = document.getElementById("video2");
-const nextBtn = document.getElementById("nextVideoBtn");
-
-function unlock() {
-  const code = document.getElementById("codeInput").value;
-
-  if (code === "200924") {
-    document.getElementById("lockIcon").textContent = "🔓";
-    document.getElementById("message").style.display = "block";
-    document.getElementById("collage").style.display = "grid";
-    document.getElementById("videoBox").style.display = "block";
-
-    video1.style.display = "block";
-    video1.play();
-
-    if (video1.reque
-        
+    <button id="nextVideoBtn">Ver siguien
+      
