@@ -31,7 +31,6 @@ body{
 
 h2{
   color:#ff4d6d;
-  margin-bottom:10px;
 }
 
 .lock{
@@ -70,9 +69,8 @@ button{
 }
 
 .collage{
-  display:none;
+  display:none; /* 🔥 oculto hasta desbloquear */
   margin-top:15px;
-  display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
 }
@@ -103,6 +101,12 @@ button{
   margin-top:20px;
   font-size:22px;
   color:#ff4d6d;
+  animation:fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -124,7 +128,7 @@ button{
 20 de septiembre, el día que empezó todo 💖
 </div>
 
-<!-- COLLAGE -->
+<!-- FOTOS -->
 <div id="collage" class="collage">
 <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
 <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
@@ -136,6 +140,7 @@ button{
 
 <!-- VIDEOS -->
 <div id="videoBox" class="video-box">
+
 <video id="video1" style="display:none;" playsinline>
 <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
 </video>
@@ -166,8 +171,8 @@ function unlock(){
   if(code === "200924"){
     document.getElementById("lockIcon").textContent="🔓";
 
-    document.getElementById("collage").style.display="grid";
     document.getElementById("message").style.display="block";
+    document.getElementById("collage").style.display="grid";
     document.getElementById("videoBox").style.display="block";
 
     video1.style.display="block";
