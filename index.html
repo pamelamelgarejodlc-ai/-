@@ -3,168 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti 💖</title>
+<title>Fecha especial 💖</title>
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-image: url("IMG_20260210_203806.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  overflow-x: hidden;
+html,body{
+  height:100%;
 }
 
-/* ===== MODAL INICIO ===== */
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+body{
+  background-image:url("IMG_20260210_203806.jpg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  overflow-x:hidden;
 }
 
-.modal {
-  background: white;
-  width: 85%;
-  max-width: 350px;
-  padding: 30px 20px;
-  border-radius: 25px;
-  text-align: center;
+/* ===== LOGIN ORIGINAL ===== */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
 }
 
-.modal h2 {
-  margin-bottom: 20px;
+.card{
+  background:white;
+  width:330px;
+  padding:25px 20px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-.modal input {
-  width: 100%;
-  padding: 14px;
-  border-radius: 15px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 15px;
+.card h2{
+  margin-bottom:15px;
 }
 
-.modal button {
-  background: #ff4d6d;
-  border: none;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 25px;
-  font-size: 16px;
+.card input{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #ccc;
+  text-align:center;
+  font-size:18px;
+  margin-bottom:15px;
+}
+
+.card button{
+  width:100%;
+  padding:12px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
 }
 
 /* ===== CONTENIDO ===== */
 
-.content {
-  display: none;
-  padding: 20px;
-  text-align: center;
+.content{
+  display:none;
+  padding:20px;
+  text-align:center;
+  min-height:100vh;
 }
 
-.title {
-  font-size: 24px;
-  color: white;
-  margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+.title{
+  color:white;
+  font-size:22px;
+  margin-bottom:20px;
+  text-shadow:0 0 10px rgba(0,0,0,0.6);
 }
 
-/* CUADRO BLANCO */
-.whiteBox {
-  background: white;
-  padding: 15px;
-  border-radius: 20px;
-  display: inline-block;
+/* CUADRO BLANCO COMO ANTES */
+.whiteBox{
+  background:white;
+  padding:15px;
+  border-radius:20px;
+  display:inline-block;
 }
 
-/* COLLAGE */
-.collage {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.collage{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 
-.collage img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  border-radius: 15px;
+.collage img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:12px;
 }
 
-.videoBtn {
-  margin-top: 25px;
-  background: #ff4d6d;
-  border: none;
-  color: white;
-  padding: 12px 30px;
-  border-radius: 25px;
-  font-size: 16px;
+.videoBtn{
+  margin-top:20px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:12px 30px;
+  border-radius:25px;
 }
 
-/* ===== VIDEOS PANTALLA COMPLETA ===== */
+/* ===== VIDEOS ===== */
 
-.videoScreen {
-  position: fixed;
-  inset: 0;
-  background: black;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 2000;
+.videoScreen{
+  position:fixed;
+  inset:0;
+  background:black;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:2000;
 }
 
-.videoScreen video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.videoScreen video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.nextBtn {
-  position: absolute;
-  bottom: 40px;
-  background: #ff4d6d;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 25px;
+.nextBtn{
+  position:absolute;
+  bottom:40px;
+  background:#ff4d6d;
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:25px;
 }
 
 /* ===== MENSAJE FINAL ===== */
 
-.finalMessage {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  color: white;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30px;
-  font-size: 22px;
-  min-height: 100vh;
+.finalMessage{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  color:white;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px;
+  font-size:22px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- MODAL -->
+<!-- LOGIN -->
 <div class="overlay" id="overlay">
-  <div class="modal">
+  <div class="card">
     <h2>Adivina la contraseña 💕</h2>
     <input type="text" id="codeInput" placeholder="Ingresa la clave" maxlength="6">
     <button onclick="unlock()">Desbloquear</button>
@@ -215,28 +218,28 @@ body {
 </div>
 
 <script>
-function unlock() {
-  const code = document.getElementById("codeInput").value.trim();
-  if(code === "200924"){
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("content").style.display = "block";
-  } else {
+function unlock(){
+  const code=document.getElementById("codeInput").value.trim();
+  if(code==="200924"){
+    document.getElementById("overlay").style.display="none";
+    document.getElementById("content").style.display="block";
+  }else{
     alert("Clave incorrecta 💔");
   }
 }
 
-function startVideos() {
-  document.getElementById("video1").style.display = "flex";
+function startVideos(){
+  document.getElementById("video1").style.display="flex";
 }
 
-function nextVideo() {
-  document.getElementById("video1").style.display = "none";
-  document.getElementById("video2").style.display = "flex";
+function nextVideo(){
+  document.getElementById("video1").style.display="none";
+  document.getElementById("video2").style.display="flex";
 }
 
-document.getElementById("vid2").addEventListener("ended", function() {
-  document.getElementById("video2").style.display = "none";
-  document.getElementById("finalMessage").style.display = "flex";
+document.getElementById("vid2").addEventListener("ended",function(){
+  document.getElementById("video2").style.display="none";
+  document.getElementById("finalMessage").style.display="flex";
 });
 </script>
 
