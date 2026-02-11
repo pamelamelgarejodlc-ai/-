@@ -6,136 +6,121 @@
 <title>Para Ti 💖</title>
 
 <style>
-body{
+*{
+box-sizing:border-box;
 margin:0;
+padding:0;
 font-family:Arial, sans-serif;
-text-align:center;
+}
+
+body{
+min-height:100vh;
 background-image:url("IMG_20260210_203806.jpg");
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
 }
 
-/* Pantalla de bloqueo */
-#lockScreen{
+/* Oscurecer fondo */
+.overlay{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100vh;
-background:rgba(0,0,0,0.6);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:10;
+background:rgba(0,0,0,0.4);
+z-index:1;
 }
 
-.lockBox{
+/* Modal */
+.modal{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 background:white;
-padding:25px;
-border-radius:20px;
-width:85%;
-max-width:350px;
+width:90%;
+max-width:360px;
+padding:30px 20px;
+border-radius:25px;
+text-align:center;
+z-index:2;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-input{
-padding:10px;
-width:80%;
-border-radius:10px;
+.modal h2{
+margin-bottom:20px;
+}
+
+.modal input{
+width:100%;
+padding:12px;
+border-radius:15px;
 border:1px solid #ccc;
-margin-top:10px;
 text-align:center;
 font-size:18px;
+margin-bottom:15px;
 }
 
-button{
-margin-top:15px;
-padding:10px 20px;
+.modal button{
+width:100%;
+padding:12px;
 border:none;
-border-radius:20px;
+border-radius:25px;
 background:#ff4d6d;
 color:white;
 font-weight:bold;
+font-size:16px;
 cursor:pointer;
 }
 
 /* Contenido oculto */
 #content{
 display:none;
-padding-top:20px;
+position:relative;
+z-index:2;
+padding-top:40px;
+text-align:center;
+color:white;
 }
 
-/* Collage */
+/* Mensaje */
+#message{
+margin-bottom:20px;
+font-size:18px;
+font-weight:bold;
+}
+
+/* Collage estilo antiguo */
 .collage{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:8px;
-padding:10px;
+padding:0 15px 40px 15px;
 }
 
 .collage img{
 width:100%;
-border-radius:10px;
-}
-
-/* Videos */
-.videoContainer{
-display:none;
-width:100%;
-height:100vh;
-background:black;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-}
-
-video{
-width:100%;
-height:100%;
+height:110px;
 object-fit:cover;
-}
-
-.nextBtn{
-position:absolute;
-bottom:30px;
-background:#ff4d6d;
-padding:12px 25px;
-border-radius:30px;
-color:white;
-font-weight:bold;
-border:none;
-}
-
-.finalMessage{
-display:none;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-color:white;
-font-size:28px;
-font-weight:bold;
-text-shadow:2px 2px 8px black;
+border-radius:12px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- BLOQUEO -->
-<div id="lockScreen">
-<div class="lockBox">
+<div class="overlay" id="overlay"></div>
+
+<div class="modal" id="modal">
 <h2>Adivina la contraseña 💕</h2>
 <input type="password" id="password" placeholder="Ingresa la clave">
-<br>
 <button onclick="unlock()">Desbloquear</button>
 </div>
-</div>
 
-<!-- CONTENIDO -->
 <div id="content">
 
-<h3 style="color:white;">20 de septiembre, el día que empezó todo 💖</h3>
+<div id="message">
+20 de septiembre, el día que empezó todo 💖
+</div>
 
 <div class="collage">
 <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
@@ -146,54 +131,19 @@ text-shadow:2px 2px 8px black;
 <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
 </div>
 
-<br>
-<button onclick="startVideos()">Ver Videos 💕</button>
-
-</div>
-
-<!-- VIDEOS -->
-<div id="video1" class="videoContainer">
-<video id="vid1" autoplay muted>
-<source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
-</video>
-<button class="nextBtn" onclick="nextVideo()">Ver siguiente video</button>
-</div>
-
-<div id="video2" class="videoContainer">
-<video id="vid2" autoplay muted>
-<source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
-</video>
-</div>
-
-<div id="finalMessage" class="finalMessage">
-Siempre seré tu lugar seguro 💖
 </div>
 
 <script>
 function unlock(){
 var pass = document.getElementById("password").value;
 
-if(pass === "200924"){   // ← AQUÍ VA TU CONTRASEÑA
-document.getElementById("lockScreen").style.display="none";
+if(pass === "200924"){
+document.getElementById("modal").style.display="none";
+document.getElementById("overlay").style.display="none";
 document.getElementById("content").style.display="block";
 }else{
 alert("Contraseña incorrecta 💔");
 }
-}
-
-function startVideos(){
-document.getElementById("content").style.display="none";
-document.getElementById("video1").style.display="flex";
-}
-
-function nextVideo(){
-document.getElementById("video1").style.display="none";
-document.getElementById("video2").style.display="flex";
-
-setTimeout(function(){
-document.getElementById("video2").style.display="none";
-document.getElementById("finalMessage").style.display="block";
-}, 8000); // duración aproximada del segundo video
 }
 </script>
 
