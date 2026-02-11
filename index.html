@@ -3,117 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fecha de aniversario 💖</title>
+<title>Para Ti 💖</title>
 
 <style>
-* { box-sizing: border-box; font-family: Arial, sans-serif; }
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(180deg, #ffb3c6, #ffe3ec);
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  background:black;
+  color:white;
 }
 
-.card {
-  background: white;
-  width: 330px;
-  padding: 25px 20px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+#lockScreen{
+  margin-top:80px;
 }
 
-h2 { color: #ff4d6d; }
-
-.lock { font-size: 60px; margin: 15px 0; }
-
-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 20px;
-  text-align: center;
-  letter-spacing: 6px;
-  border-radius: 14px;
-  border: 1px solid #ccc;
-  margin-bottom: 15px;
+input{
+  padding:10px;
+  font-size:16px;
+  text-align:center;
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background: #ff4d6d;
-  color: white;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
+button{
+  padding:10px 20px;
+  margin-top:10px;
+  font-size:16px;
+  cursor:pointer;
 }
 
-#message {
-  display: none;
-  margin-top: 10px;
-  color: #ff4d6d;
+#content{
+  display:none;
 }
 
-/* COLLAGE */
-.collage {
-  display: none;
-  margin-top: 15px;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
+#collage{
+  display:none;
+  grid-template-columns: repeat(2, 1fr);
+  gap:10px;
+  padding:10px;
 }
 
-.collage img {
-  width: 100%;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 10px;
+#collage img{
+  width:100%;
+  border-radius:10px;
 }
 
-/* VIDEOS */
-.video-box {
-  display: none;
-  margin-top: 15px;
+video{
+  width:100%;
+  display:none;
 }
 
-.video-box video {
-  width: 100%;
-  border-radius: 15px;
-  display: none;
+#nextVideoBtn{
+  display:none;
+  margin-top:10px;
 }
 
-#nextVideoBtn {
-  display: none;
-  margin-top: 10px;
-  background: #ff85a2;
+#finalMessage{
+  display:none;
+  font-size:24px;
+  margin:40px 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h2>Fecha de aniversario 💕</h2>
-  <div id="lockIcon" class="lock">🔒</div>
-
-  <input
-    id="codeInput"
-    type="text"
-    maxlength="6"
-    placeholder="DDMMYY"
-    inputmode="numeric"
-  >
-
+<div id="lockScreen">
+  <h2 id="lockIcon">🔒</h2>
+  <p>Ingresa la contraseña</p>
+  <input type="password" id="codeInput" placeholder="Solo números">
+  <br>
   <button onclick="unlock()">Desbloquear</button>
+</div>
 
-  <div id="message">
-    🔓 20 de septiembre, el día que empezó todo 💖
-  </div>
+<div id="content">
 
-  <!-- IMÁGENES -->
-  <div id="collage" class="collage">
+  <h2 id="message" style="display:none;">Para ti, amor 💕</h2>
+
+  <div id="collage">
     <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
     <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
     <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
@@ -122,68 +88,76 @@ button {
     <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
   </div>
 
-  <!-- VIDEOS -->
-  <div id="videoBox" class="video-box">
-    <video id="video1" controls playsinline>
+  <div id="videoBox">
+    <video id="video1" playsinline>
       <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
     </video>
 
-    <video id="video2" controls playsinline>
+    <video id="video2" playsinline>
       <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
     </video>
 
     <button id="nextVideoBtn">Ver siguiente video 💕</button>
   </div>
+
+  <div id="finalMessage">
+    Siempre seré tu lugar seguro 💖
+  </div>
+
 </div>
 
 <script>
+
 const video1 = document.getElementById("video1");
 const video2 = document.getElementById("video2");
 const nextBtn = document.getElementById("nextVideoBtn");
+const finalMessage = document.getElementById("finalMessage");
 
-function unlock() {
+function unlock(){
   const code = document.getElementById("codeInput").value.trim();
-  console.log("Código ingresado:", code);
 
-  if (code === "200924") {
+  if(code === "200924"){
     document.getElementById("lockIcon").textContent = "🔓";
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("content").style.display = "block";
+    document.getElementById("collage").style.display = "grid";
     document.getElementById("message").style.display = "block";
-
-    const collage = document.getElementById("collage");
-    collage.style.display = "grid";
-
-    const videoBox = document.getElementById("videoBox");
-    videoBox.style.display = "block";
 
     video1.style.display = "block";
     video1.play();
 
-    if (video1.requestFullscreen) {
+    if(video1.requestFullscreen){
       video1.requestFullscreen();
-    } else if (video1.webkitRequestFullscreen) {
+    } else if(video1.webkitRequestFullscreen){
       video1.webkitRequestFullscreen();
     }
   } else {
-    alert("Fecha incorrecta 💔");
+    alert("Contraseña incorrecta 💔");
   }
 }
 
-video1.addEventListener("ended", () => {
-  nextBtn.style.display = "block";
+video1.addEventListener("ended", ()=>{
+  nextBtn.style.display = "inline-block";
 });
 
-nextBtn.addEventListener("click", () => {
+nextBtn.addEventListener("click", ()=>{
   nextBtn.style.display = "none";
   video1.style.display = "none";
   video2.style.display = "block";
   video2.play();
 
-  if (video2.requestFullscreen) {
+  if(video2.requestFullscreen){
     video2.requestFullscreen();
-  } else if (video2.webkitRequestFullscreen) {
+  } else if(video2.webkitRequestFullscreen){
     video2.webkitRequestFullscreen();
   }
 });
+
+video2.addEventListener("ended", ()=>{
+  video2.style.display = "none";
+  finalMessage.style.display = "block";
+});
+
 </script>
 
 </body>
