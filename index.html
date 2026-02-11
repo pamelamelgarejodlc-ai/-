@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fecha de aniversario 💖</title>
+<title>Adivina la contraseña 💖</title>
 
 <style>
 *{
@@ -69,7 +69,7 @@ button{
 }
 
 .collage{
-  display:none; /* 🔥 oculto hasta desbloquear */
+  display:none;
   margin-top:15px;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
@@ -98,8 +98,9 @@ button{
 
 #finalMessage{
   display:none;
-  margin-top:20px;
+  margin-top:25px;
   font-size:22px;
+  font-weight:bold;
   color:#ff4d6d;
   animation:fadeIn 1.2s ease;
 }
@@ -115,7 +116,7 @@ button{
 
 <div class="card">
 
-<h2>Fecha de aniversario 💕</h2>
+<h2>Adivina la contraseña 💕</h2>
 
 <div id="lockIcon" class="lock">🔒</div>
 
@@ -151,10 +152,11 @@ button{
 
 <button id="nextVideoBtn">Ver siguiente video 💕</button>
 
-<div id="finalMessage">
-Siempre seré tu lugar seguro 💖
 </div>
 
+<!-- MENSAJE FINAL (FUERA DEL VIDEOBOX) -->
+<div id="finalMessage">
+Siempre seré tu lugar seguro 💖
 </div>
 
 </div>
