@@ -3,234 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Ti 💖</title>
+<title>Para mi amor ❤️</title>
 
 <style>
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Arial', sans-serif;
 }
 
 body{
-min-height:100vh;
-background-image:url("IMG_20260210_203806.jpg");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+    height:100vh;
+    background-image: url("IMG_20260210_203806.jpg");
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
-/* Modal */
-.modal{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-width:90%;
-max-width:360px;
-padding:30px 20px;
-border-radius:25px;
-text-align:center;
-z-index:10;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
+/* Pantalla inicial */
+#login{
+    text-align:center;
+    color:white;
+    background: rgba(0,0,0,0.6);
+    padding:40px;
+    border-radius:20px;
 }
 
-.modal input{
-width:100%;
-padding:12px;
-border-radius:15px;
-border:1px solid #ccc;
-text-align:center;
-font-size:18px;
-margin-bottom:15px;
+input{
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    margin-top:15px;
+    text-align:center;
 }
 
-.modal button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:25px;
-background:#ff4d6d;
-color:white;
-font-weight:bold;
-font-size:16px;
-cursor:pointer;
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    margin-top:15px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-/* Contenido */
-#content{
-display:none;
-padding-top:40px;
-text-align:center;
+button:hover{
+    opacity:0.8;
 }
 
-#message{
-color:white;
-margin-bottom:20px;
-font-size:20px;
-font-weight:bold;
+/* Contenido oculto */
+#contenido{
+    display:none;
+    width:100%;
+    height:100%;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
 
-/* Cuadro blanco */
-.collageContainer{
-background:#ffffff;
-width:90%;
-max-width:420px;
-margin:0 auto;
-padding:20px;
-border-radius:25px;
-box-shadow:0 15px 35px rgba(0,0,0,0.4);
+/* Collage */
+#collage{
+    display:none;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+    display:grid;
+    grid-template-columns: repeat(3, 100px);
+    gap:10px;
 }
 
-/* Collage cuadrado */
-.collage{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
+#collage img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
-.collage img{
-width:100%;
-aspect-ratio:1/1;
-object-fit:cover;
-border-radius:15px;
+/* Videos */
+#videos{
+    display:none;
+    width:100%;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:black;
 }
 
-/* Botón */
-.videoBtn{
-margin:30px auto 50px auto;
-display:inline-block;
-padding:14px 28px;
-background:#ff4d6d;
-color:white;
-border-radius:30px;
-font-weight:bold;
-border:none;
+video{
+    width:100%;
+    height:100vh;
+    object-fit:cover;
 }
 
-/* VIDEOS FULLSCREEN */
-.videoScreen{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-background:black;
-z-index:20;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-}
-
-.videoScreen video{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.nextBtn{
-position:absolute;
-bottom:40px;
-padding:14px 28px;
-border-radius:30px;
-background:#ff4d6d;
-color:white;
-border:none;
-font-weight:bold;
-}
-
-.finalMessage{
-display:none;
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-color:white;
-font-size:28px;
-font-weight:bold;
-text-align:center;
+/* Mensaje final */
+#final{
+    display:none;
+    position:absolute;
+    background:rgba(0,0,0,0.8);
+    color:white;
+    text-align:center;
+    padding:40px;
+    font-size:20px;
 }
 </style>
 </head>
-
 <body>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<h2>Adivina la contraseña 💕</h2>
-<input type="password" id="password" placeholder="Ingresa la clave">
-<button onclick="unlock()">Desbloquear</button>
+<!-- LOGIN -->
+<div id="login">
+    <h2>Ingresa nuestra fecha especial ❤️</h2>
+    <input type="password" id="password" placeholder="Solo números">
+    <br>
+    <button onclick="verificar()">Desbloquear</button>
 </div>
 
 <!-- CONTENIDO -->
-<div id="content">
+<div id="contenido">
 
-<div id="message">
-20 de septiembre, el día que empezó todo 💖
-</div>
+    <!-- COLLAGE -->
+    <div id="collage">
+        <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
+        <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
+        <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
+        <img src="IMG_20251214_194741.jpg">
+        <img src="IMG_20260117_185048.jpg">
+        <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
+    </div>
 
-<div class="collageContainer">
-<div class="collage">
-<img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
-<img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
-<img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
-<img src="IMG_20251214_194741.jpg">
-<img src="IMG_20260117_185048.jpg">
-<img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
-</div>
-</div>
-
-<button class="videoBtn" onclick="startVideos()">Ver Videos 💕</button>
+    <br>
+    <button onclick="iniciarVideos()">Ver videos ❤️</button>
 
 </div>
 
-<!-- VIDEO 1 -->
-<div id="video1" class="videoScreen">
-<video id="vid1" controls>
-<source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
-</video>
-<button class="nextBtn" onclick="nextVideo()">Ver siguiente 💕</button>
+<!-- VIDEOS -->
+<div id="videos">
+    <video id="videoPlayer" controls></video>
+    <button onclick="siguienteVideo()">Ver siguiente video</button>
 </div>
 
-<!-- VIDEO 2 -->
-<div id="video2" class="videoScreen">
-<video id="vid2" controls>
-<source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
-</video>
-</div>
-
-<div id="finalMessage" class="finalMessage">
-Siempre seré tu lugar seguro 💖
+<!-- MENSAJE FINAL -->
+<div id="final">
+Estoy muy orgullosa de ti, confía en ti como yo confío en ti.  
+Para mí eres el mejor del mundo❤️🌎  
+Te amo mi amor ❤️
 </div>
 
 <script>
-function unlock(){
-var pass = document.getElementById("password").value;
+const passwordCorrecta = "200924";
 
-if(pass === "200924"){
-document.getElementById("modal").style.display="none";
-document.getElementById("content").style.display="block";
-}else{
-alert("Contraseña incorrecta 💔");
-}
-}
-
-function startVideos(){
-document.getElementById("content").style.display="none";
-document.getElementById("video1").style.display="flex";
+function verificar(){
+    const input = document.getElementById("password").value;
+    if(input === passwordCorrecta){
+        document.getElementById("login").style.display="none";
+        document.getElementById("contenido").style.display="flex";
+        document.getElementById("collage").style.display="grid";
+    }else{
+        alert("Fecha incorrecta mi amor ❤️");
+    }
 }
 
-function nextVideo(){
-document.getElementById("video1").style.display="none";
-document.getElementById("video2").style.display="flex";
+let videos = [
+"lv_7541228478348217661_20260204151029.mp4",
+"lv_7564168475699268869_20260204151329.mp4"
+];
 
-document.getElementById("vid2").onended = function(){
-document.getElementById("video2").style.display="none";
-document.getElementById("finalMessage").style.display="block";
-};
+let indice = 0;
+
+function iniciarVideos(){
+    document.getElementById("contenido").style.display="none";
+    document.getElementById("videos").style.display="flex";
+    reproducirVideo();
+}
+
+function reproducirVideo(){
+    const player = document.getElementById("videoPlayer");
+    player.src = videos[indice];
+    player.play();
+}
+
+function siguienteVideo(){
+    indice++;
+    if(indice < videos.length){
+        reproducirVideo();
+    }else{
+        document.getElementById("videos").style.display="none";
+        document.getElementById("final").style.display="block";
+    }
 }
 </script>
 
