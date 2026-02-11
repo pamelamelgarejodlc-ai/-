@@ -26,12 +26,12 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== LOGIN ORIGINAL ===== */
+/* ===== LOGIN NEGRO ===== */
 
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.85);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -39,12 +39,13 @@ body{
 }
 
 .card{
-  background:white;
+  background:#111;
   width:330px;
   padding:25px 20px;
   border-radius:20px;
   text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  color:white;
 }
 
 .card h2{
@@ -55,7 +56,7 @@ body{
   width:100%;
   padding:12px;
   border-radius:14px;
-  border:1px solid #ccc;
+  border:none;
   text-align:center;
   font-size:18px;
   margin-bottom:15px;
@@ -87,7 +88,6 @@ body{
   text-shadow:0 0 10px rgba(0,0,0,0.6);
 }
 
-/* CUADRO BLANCO COMO ANTES */
 .whiteBox{
   background:white;
   padding:15px;
@@ -146,19 +146,33 @@ body{
   border-radius:25px;
 }
 
-/* ===== MENSAJE FINAL ===== */
+/* ===== MENSAJE FINAL CON EFECTO ===== */
 
 .finalMessage{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,0.9);
   color:white;
   display:none;
   justify-content:center;
   align-items:center;
   text-align:center;
   padding:30px;
-  font-size:22px;
+}
+
+.finalText{
+  font-size:24px;
+  animation:fadeIn 2s ease forwards, glow 2s infinite alternate;
+  opacity:0;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes glow{
+  from{text-shadow:0 0 10px #ff4d6d;}
+  to{text-shadow:0 0 25px #ff99ac;}
 }
 </style>
 </head>
@@ -212,9 +226,11 @@ body{
 
 <!-- MENSAJE FINAL -->
 <div class="finalMessage" id="finalMessage">
-  Estoy muy orgullosa de ti, confía en ti como yo confío en ti.
-  Para mí eres el mejor del mundo❤️🌎
-  Te amo mi amor ❤️
+  <div class="finalText">
+    Estoy muy orgullosa de ti, confía en ti como yo confío en ti.<br><br>
+    Para mí eres el mejor del mundo ❤️🌎<br><br>
+    Te amo mi amor ❤️
+  </div>
 </div>
 
 <script>
