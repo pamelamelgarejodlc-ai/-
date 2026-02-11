@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adivina la contraseña 💖</title>
+<title>Fecha de aniversario 💖</title>
 
 <style>
 *{
@@ -71,6 +71,7 @@ button{
 .collage{
   display:none;
   margin-top:15px;
+  display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
 }
@@ -98,9 +99,8 @@ button{
 
 #finalMessage{
   display:none;
-  margin-top:25px;
+  margin-top:20px;
   font-size:22px;
-  font-weight:bold;
   color:#ff4d6d;
   animation:fadeIn 1.2s ease;
 }
@@ -116,7 +116,7 @@ button{
 
 <div class="card">
 
-<h2>Adivina la contraseña 💕</h2>
+<h2>Fecha de aniversario 💕</h2>
 
 <div id="lockIcon" class="lock">🔒</div>
 
@@ -136,7 +136,7 @@ button{
 <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
 <img src="IMG_20251214_194741.jpg">
 <img src="IMG_20260117_185048.jpg">
-<img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
+<img src="IMG_20260210_203806.jpg">
 </div>
 
 <!-- VIDEOS -->
@@ -152,11 +152,10 @@ button{
 
 <button id="nextVideoBtn">Ver siguiente video 💕</button>
 
-</div>
-
-<!-- MENSAJE FINAL (FUERA DEL VIDEOBOX) -->
 <div id="finalMessage">
 Siempre seré tu lugar seguro 💖
+</div>
+
 </div>
 
 </div>
@@ -187,32 +186,5 @@ function unlock(){
     }
 
   }else{
-    alert("Contraseña incorrecta 💔");
-  }
-}
-
-video1.addEventListener("ended",()=>{
-  nextBtn.style.display="block";
-});
-
-nextBtn.addEventListener("click",()=>{
-  nextBtn.style.display="none";
-  video1.style.display="none";
-  video2.style.display="block";
-  video2.play();
-
-  if(video2.requestFullscreen){
-    video2.requestFullscreen();
-  }else if(video2.webkitRequestFullscreen){
-    video2.webkitRequestFullscreen();
-  }
-});
-
-video2.addEventListener("ended",()=>{
-  video2.style.display="none";
-  finalMessage.style.display="block";
-});
-</script>
-
-</body>
-</html>
+    alert("Contraseña
+          
