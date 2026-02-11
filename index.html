@@ -46,10 +46,6 @@ z-index:2;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
 }
 
-.modal h2{
-margin-bottom:20px;
-}
-
 .modal input{
 width:100%;
 padding:12px;
@@ -72,7 +68,7 @@ font-size:16px;
 cursor:pointer;
 }
 
-/* Contenido oculto */
+/* Contenido */
 #content{
 display:none;
 position:relative;
@@ -88,18 +84,19 @@ font-size:20px;
 font-weight:bold;
 }
 
-/* Collage estilo Pinterest */
+/* COLLAGE CUADRADO COMO ANTES */
 .collage{
-column-count:2;
-column-gap:12px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 padding:15px;
 }
 
 .collage img{
 width:100%;
-margin-bottom:12px;
+aspect-ratio:1/1;
+object-fit:cover;
 border-radius:18px;
-display:block;
 }
 
 /* Botón videos */
@@ -111,7 +108,51 @@ background:#ff4d6d;
 color:white;
 border-radius:30px;
 font-weight:bold;
-text-decoration:none;
+border:none;
+}
+
+/* VIDEOS FULLSCREEN */
+.videoScreen{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:black;
+z-index:5;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+.videoScreen video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.nextBtn{
+position:absolute;
+bottom:40px;
+padding:14px 28px;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+border:none;
+font-weight:bold;
+}
+
+.finalMessage{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+font-size:28px;
+font-weight:bold;
+text-align:center;
 }
 </style>
 </head>
@@ -141,8 +182,27 @@ text-decoration:none;
 <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
 </div>
 
-<a href="#" class="videoBtn">Ver Videos 💕</a>
+<button class="videoBtn" onclick="startVideos()">Ver Videos 💕</button>
 
+</div>
+
+<!-- VIDEO 1 -->
+<div id="video1" class="videoScreen">
+<video id="vid1" autoplay muted>
+<source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
+</video>
+<button class="nextBtn" onclick="nextVideo()">Ver siguiente 💕</button>
+</div>
+
+<!-- VIDEO 2 -->
+<div id="video2" class="videoScreen">
+<video id="vid2" autoplay muted>
+<source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
+</video>
+</div>
+
+<div id="finalMessage" class="finalMessage">
+Siempre seré tu lugar seguro 💖
 </div>
 
 <script>
@@ -156,6 +216,21 @@ document.getElementById("content").style.display="block";
 }else{
 alert("Contraseña incorrecta 💔");
 }
+}
+
+function startVideos(){
+document.getElementById("content").style.display="none";
+document.getElementById("video1").style.display="flex";
+}
+
+function nextVideo(){
+document.getElementById("video1").style.display="none";
+document.getElementById("video2").style.display="flex";
+
+document.getElementById("vid2").onended = function(){
+document.getElementById("video2").style.display="none";
+document.getElementById("finalMessage").style.display="block";
+};
 }
 </script>
 
