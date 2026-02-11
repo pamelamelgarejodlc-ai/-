@@ -3,200 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi amor ❤️</title>
+<title>Para ti 💖</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: 'Arial', sans-serif;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-body{
-    height:100vh;
-    background-image: url("IMG_20260210_203806.jpg");
-    background-size: cover;
-    background-position: center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("IMG_20260210_203806.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
 }
 
-/* Pantalla inicial */
-#login{
-    text-align:center;
-    color:white;
-    background: rgba(0,0,0,0.6);
-    padding:40px;
-    border-radius:20px;
+/* ===== MODAL INICIO ===== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-input{
-    padding:10px;
-    border:none;
-    border-radius:10px;
-    margin-top:15px;
-    text-align:center;
+.modal {
+  background: white;
+  width: 85%;
+  max-width: 350px;
+  padding: 30px 20px;
+  border-radius: 25px;
+  text-align: center;
 }
 
-button{
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    margin-top:15px;
-    background:#ff4d6d;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
+.modal h2 {
+  margin-bottom: 20px;
 }
 
-button:hover{
-    opacity:0.8;
+.modal input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
-/* Contenido oculto */
-#contenido{
-    display:none;
-    width:100%;
-    height:100%;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+.modal button {
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 16px;
 }
 
-/* Collage */
-#collage{
-    display:none;
-    background:white;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(0,0,0,0.5);
-    display:grid;
-    grid-template-columns: repeat(3, 100px);
-    gap:10px;
+/* ===== CONTENIDO ===== */
+
+.content {
+  display: none;
+  padding: 20px;
+  text-align: center;
 }
 
-#collage img{
-    width:100px;
-    height:100px;
-    object-fit:cover;
-    border-radius:10px;
+.title {
+  font-size: 24px;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
 
-/* Videos */
-#videos{
-    display:none;
-    width:100%;
-    height:100vh;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    background:black;
+/* CUADRO BLANCO */
+.whiteBox {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  display: inline-block;
 }
 
-video{
-    width:100%;
-    height:100vh;
-    object-fit:cover;
+/* COLLAGE */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
-/* Mensaje final */
-#final{
-    display:none;
-    position:absolute;
-    background:rgba(0,0,0,0.8);
-    color:white;
-    text-align:center;
-    padding:40px;
-    font-size:20px;
+.collage img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.videoBtn {
+  margin-top: 25px;
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+}
+
+/* ===== VIDEOS PANTALLA COMPLETA ===== */
+
+.videoScreen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+.videoScreen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nextBtn {
+  position: absolute;
+  bottom: 40px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+}
+
+/* ===== MENSAJE FINAL ===== */
+
+.finalMessage {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  font-size: 22px;
+  min-height: 100vh;
 }
 </style>
 </head>
+
 <body>
 
-<!-- LOGIN -->
-<div id="login">
-    <h2>Ingresa nuestra fecha especial ❤️</h2>
-    <input type="password" id="password" placeholder="Solo números">
-    <br>
-    <button onclick="verificar()">Desbloquear</button>
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Adivina la contraseña 💕</h2>
+    <input type="text" id="codeInput" placeholder="Ingresa la clave" maxlength="6">
+    <button onclick="unlock()">Desbloquear</button>
+  </div>
 </div>
 
 <!-- CONTENIDO -->
-<div id="contenido">
+<div class="content" id="content">
+  <div class="title">
+    20 de septiembre, el día que empezó todo 💖
+  </div>
 
-    <!-- COLLAGE -->
-    <div id="collage">
-        <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
-        <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
-        <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
-        <img src="IMG_20251214_194741.jpg">
-        <img src="IMG_20260117_185048.jpg">
-        <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
+  <div class="whiteBox">
+    <div class="collage">
+      <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
+      <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
+      <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
+      <img src="IMG_20251214_194741.jpg">
+      <img src="IMG_20260117_185048.jpg">
+      <img src="Screenshot_2025-11-25-22-41-29-985_com.whatsapp.jpg">
     </div>
+  </div>
 
-    <br>
-    <button onclick="iniciarVideos()">Ver videos ❤️</button>
-
+  <br>
+  <button class="videoBtn" onclick="startVideos()">Ver Videos 💕</button>
 </div>
 
-<!-- VIDEOS -->
-<div id="videos">
-    <video id="videoPlayer" controls></video>
-    <button onclick="siguienteVideo()">Ver siguiente video</button>
+<!-- VIDEO 1 -->
+<div id="video1" class="videoScreen">
+  <video id="vid1" controls>
+    <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
+  </video>
+  <button class="nextBtn" onclick="nextVideo()">Siguiente 💕</button>
+</div>
+
+<!-- VIDEO 2 -->
+<div id="video2" class="videoScreen">
+  <video id="vid2" controls>
+    <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
+  </video>
 </div>
 
 <!-- MENSAJE FINAL -->
-<div id="final">
-Estoy muy orgullosa de ti, confía en ti como yo confío en ti.  
-Para mí eres el mejor del mundo❤️🌎  
-Te amo mi amor ❤️
+<div class="finalMessage" id="finalMessage">
+  Estoy muy orgullosa de ti, confía en ti como yo confío en ti.
+  Para mí eres el mejor del mundo❤️🌎
+  Te amo mi amor ❤️
 </div>
 
 <script>
-const passwordCorrecta = "200924";
-
-function verificar(){
-    const input = document.getElementById("password").value;
-    if(input === passwordCorrecta){
-        document.getElementById("login").style.display="none";
-        document.getElementById("contenido").style.display="flex";
-        document.getElementById("collage").style.display="grid";
-    }else{
-        alert("Fecha incorrecta mi amor ❤️");
-    }
+function unlock() {
+  const code = document.getElementById("codeInput").value.trim();
+  if(code === "200924"){
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  } else {
+    alert("Clave incorrecta 💔");
+  }
 }
 
-let videos = [
-"lv_7541228478348217661_20260204151029.mp4",
-"lv_7564168475699268869_20260204151329.mp4"
-];
-
-let indice = 0;
-
-function iniciarVideos(){
-    document.getElementById("contenido").style.display="none";
-    document.getElementById("videos").style.display="flex";
-    reproducirVideo();
+function startVideos() {
+  document.getElementById("video1").style.display = "flex";
 }
 
-function reproducirVideo(){
-    const player = document.getElementById("videoPlayer");
-    player.src = videos[indice];
-    player.play();
+function nextVideo() {
+  document.getElementById("video1").style.display = "none";
+  document.getElementById("video2").style.display = "flex";
 }
 
-function siguienteVideo(){
-    indice++;
-    if(indice < videos.length){
-        reproducirVideo();
-    }else{
-        document.getElementById("videos").style.display="none";
-        document.getElementById("final").style.display="block";
-    }
-}
+document.getElementById("vid2").addEventListener("ended", function() {
+  document.getElementById("video2").style.display = "none";
+  document.getElementById("finalMessage").style.display = "flex";
+});
 </script>
 
 </body>
