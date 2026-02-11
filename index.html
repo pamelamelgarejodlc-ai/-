@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adivina la contraseña 💖</title>
+<title>Adivina la contraseña 💕</title>
 
 <style>
 body{
@@ -14,12 +14,11 @@ body{
   align-items:center;
   font-family:Arial, sans-serif;
 
-  /* 💕 FOTO DE FONDO */
-  background: url("IMG_20260210_203806.jpg") no-repeat center center;
-  background-size: cover;
+  background:url("IMG_20260210_203806.jpg") no-repeat center center;
+  background-size:cover;
 }
 
-/* capa rosada suave encima de la foto */
+/* capa rosada suave */
 body::before{
   content:"";
   position:fixed;
@@ -35,6 +34,10 @@ body::before{
   border-radius:20px;
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+h2{
+  color:#ff4d6d;
 }
 
 input{
@@ -59,9 +62,15 @@ button{
   margin-top:10px;
 }
 
+#message{
+  display:none;
+  color:#ff4d6d;
+}
+
 .collage{
   display:none;
   margin-top:15px;
+  display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
 }
@@ -76,6 +85,11 @@ button{
 #videoSection{
   display:none;
   margin-top:15px;
+}
+
+video{
+  width:100%;
+  border-radius:15px;
 }
 
 #nextBtn{
@@ -103,11 +117,11 @@ button{
 
 <button onclick="unlock()">Desbloquear</button>
 
-<p id="message" style="display:none;color:#ff4d6d;">
+<p id="message">
 20 de septiembre, el día que empezó todo 💖
 </p>
 
-<!-- COLLAGE -->
+<!-- FOTOS -->
 <div id="collage" class="collage">
 <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
 <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
@@ -119,11 +133,11 @@ button{
 <!-- VIDEOS -->
 <div id="videoSection">
 
-<video id="video1" style="display:none;" playsinline>
+<video id="video1" style="display:none;" controls>
 <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
 </video>
 
-<video id="video2" style="display:none;" playsinline>
+<video id="video2" style="display:none;" controls>
 <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
 </video>
 
@@ -147,17 +161,12 @@ function unlock(){
 
     document.getElementById("lock").innerHTML="🔓";
     document.getElementById("message").style.display="block";
-
     document.getElementById("collage").style.display="grid";
     document.getElementById("videoSection").style.display="block";
 
     const video1 = document.getElementById("video1");
     video1.style.display="block";
     video1.play();
-
-    if(video1.requestFullscreen){
-      video1.requestFullscreen();
-    }
 
   } else {
     alert("Contraseña incorrecta 💔");
@@ -178,10 +187,6 @@ nextBtn.addEventListener("click", ()=>{
   video1.style.display="none";
   video2.style.display="block";
   video2.play();
-
-  if(video2.requestFullscreen){
-    video2.requestFullscreen();
-  }
 });
 
 video2.addEventListener("ended", ()=>{
