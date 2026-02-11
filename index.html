@@ -3,39 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fecha de aniversario 💖</title>
+<title>Adivina la contraseña 💖</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
-
 body{
   margin:0;
   min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(180deg,#ffb3c6,#ffe3ec);
+  font-family:Arial, sans-serif;
+
+  /* 💕 FOTO DE FONDO */
+  background: url("IMG_20260210_203806.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+/* capa rosada suave encima de la foto */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(255,179,198,0.5);
+  z-index:-1;
 }
 
 .card{
   background:white;
   width:330px;
-  padding:25px 20px;
+  padding:25px;
   border-radius:20px;
   text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
-
-h2{
-  color:#ff4d6d;
-}
-
-.lock{
-  font-size:60px;
-  margin:15px 0;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 input{
@@ -56,22 +55,13 @@ button{
   color:white;
   border:none;
   border-radius:25px;
-  font-size:16px;
   cursor:pointer;
   margin-top:10px;
-}
-
-#message{
-  display:none;
-  margin-top:15px;
-  font-size:16px;
-  color:#ff4d6d;
 }
 
 .collage{
   display:none;
   margin-top:15px;
-  display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
 }
@@ -83,31 +73,20 @@ button{
   border-radius:10px;
 }
 
-.video-box{
+#videoSection{
   display:none;
   margin-top:15px;
 }
 
-.video-box video{
-  width:100%;
-  border-radius:15px;
-}
-
-#nextVideoBtn{
+#nextBtn{
   display:none;
 }
 
-#finalMessage{
+#finalText{
   display:none;
   margin-top:20px;
-  font-size:22px;
+  font-size:20px;
   color:#ff4d6d;
-  animation:fadeIn 1.2s ease;
-}
-
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(10px);}
-  to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -116,31 +95,29 @@ button{
 
 <div class="card">
 
-<h2>Fecha de aniversario 💕</h2>
+<h2>Adivina la contraseña 💕</h2>
 
-<div id="lockIcon" class="lock">🔒</div>
+<div id="lock">🔒</div>
 
-<input type="text" id="codeInput" maxlength="6" placeholder="DDMMYY" inputmode="numeric">
+<input type="text" id="code" maxlength="6" placeholder="DDMMYY">
 
 <button onclick="unlock()">Desbloquear</button>
 
-<div id="message">
-🔓<br>
+<p id="message" style="display:none;color:#ff4d6d;">
 20 de septiembre, el día que empezó todo 💖
-</div>
+</p>
 
-<!-- FOTOS -->
+<!-- COLLAGE -->
 <div id="collage" class="collage">
 <img src="0665c6e22fc721a6a00a7aa94a2606bb_0.jpeg">
 <img src="5aaa39f1a95c4098ed208ccc9bb17a95_0.jpeg">
 <img src="830fe84f0695c187266e425bfecc200d_0.jpeg">
 <img src="IMG_20251214_194741.jpg">
 <img src="IMG_20260117_185048.jpg">
-<img src="IMG_20260210_203806.jpg">
 </div>
 
 <!-- VIDEOS -->
-<div id="videoBox" class="video-box">
+<div id="videoSection">
 
 <video id="video1" style="display:none;" playsinline>
 <source src="lv_7541228478348217661_20260204151029.mp4" type="video/mp4">
@@ -150,9 +127,9 @@ button{
 <source src="lv_7564168475699268869_20260204151329.mp4" type="video/mp4">
 </video>
 
-<button id="nextVideoBtn">Ver siguiente video 💕</button>
+<button id="nextBtn">Ver siguiente video 💕</button>
 
-<div id="finalMessage">
+<div id="finalText">
 Siempre seré tu lugar seguro 💖
 </div>
 
@@ -161,30 +138,57 @@ Siempre seré tu lugar seguro 💖
 </div>
 
 <script>
-const video1 = document.getElementById("video1");
-const video2 = document.getElementById("video2");
-const nextBtn = document.getElementById("nextVideoBtn");
-const finalMessage = document.getElementById("finalMessage");
+const correctCode = "200924";
 
 function unlock(){
-  const code = document.getElementById("codeInput").value.trim();
+  const code = document.getElementById("code").value.trim();
 
-  if(code === "200924"){
-    document.getElementById("lockIcon").textContent="🔓";
+  if(code === correctCode){
 
+    document.getElementById("lock").innerHTML="🔓";
     document.getElementById("message").style.display="block";
-    document.getElementById("collage").style.display="grid";
-    document.getElementById("videoBox").style.display="block";
 
+    document.getElementById("collage").style.display="grid";
+    document.getElementById("videoSection").style.display="block";
+
+    const video1 = document.getElementById("video1");
     video1.style.display="block";
     video1.play();
 
     if(video1.requestFullscreen){
       video1.requestFullscreen();
-    }else if(video1.webkitRequestFullscreen){
-      video1.webkitRequestFullscreen();
     }
 
-  }else{
-    alert("Contraseña
-          
+  } else {
+    alert("Contraseña incorrecta 💔");
+  }
+}
+
+const video1 = document.getElementById("video1");
+const video2 = document.getElementById("video2");
+const nextBtn = document.getElementById("nextBtn");
+const finalText = document.getElementById("finalText");
+
+video1.addEventListener("ended", ()=>{
+  nextBtn.style.display="block";
+});
+
+nextBtn.addEventListener("click", ()=>{
+  nextBtn.style.display="none";
+  video1.style.display="none";
+  video2.style.display="block";
+  video2.play();
+
+  if(video2.requestFullscreen){
+    video2.requestFullscreen();
+  }
+});
+
+video2.addEventListener("ended", ()=>{
+  video2.style.display="none";
+  finalText.style.display="block";
+});
+</script>
+
+</body>
+</html>
